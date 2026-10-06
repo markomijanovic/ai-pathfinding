@@ -1,4 +1,5 @@
 import random
+from collections import deque
 
 import config
 
@@ -49,9 +50,9 @@ class Blue(Algorithm):
 class Red(Algorithm):
     def get_path(self, state):
         visited = set()
-        queue = [(state, (), [])]
+        queue = deque([(state, (), [])])
         while (len(queue)):
-            curr_state, curr_action, curr_path = queue.pop(0)
+            curr_state, curr_action, curr_path = queue.popleft()
 
             curr_state_key = curr_state.get_state('S')
             if curr_state_key in visited:
